@@ -17,9 +17,8 @@ public class LoginTest {
     @Test
     public void testLoginSigaa() {
         metodos a = new metodos();
-        a.logarSigaa("aleksander.lopes", "Aleks15872704");
-        a.navegarMenuDiscente("Estágio", "Mural de Vagas");
-
+        a.logarSigaa("", "");
+        a.navegarMenuDiscente("Ensino", "Emitir Histórico");
     }
 
     @After
