@@ -17,9 +17,9 @@ public class LoginTest {
     @Test
     public void testLoginSigaa() {
         metodos a = new metodos();
-        a.logarSigaa("aleksander.lopes", "Aleks15872704");
+        a.logarSigaa("aleksander.lopes", "");
         a.navegarMenuDiscente("Ensino", "trancamento de matrícula");
-        a.trancamentoDeMatriculaCCR("03854413041", "Aleks15872704", "03112005");
+        a.trancamentoDeMatriculaCCR("03854413041", "", "03112005");
         // a.matriculaExtraordinaria("Chapecó", "03854413041", "123", "03112005");
         // a.suspensaoDoPrograma("03854413041", "Aleks15872704", "03112005");
     }
