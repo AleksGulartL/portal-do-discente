@@ -178,10 +178,10 @@ public class metodos extends Elementos {
                 }
                 driver.findElement(senhaMatricula).sendKeys(senha);
                 driver.findElement(confirmarSolicitacao).click();
+                voltarAoMenuPrincipal();
             }
         }
     }
-
 }
 
 // matricula extraordinaria
