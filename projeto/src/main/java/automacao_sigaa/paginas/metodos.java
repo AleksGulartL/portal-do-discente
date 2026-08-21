@@ -3,6 +3,7 @@ package automacao_sigaa.paginas;
 import java.time.Duration;
 import java.util.List;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
@@ -26,7 +27,7 @@ public class metodos extends Elementos {
                 List<WebElement> submenus = driver.findElements(classeSubmenu);
                 for (WebElement submenu : submenus) {
                     String submenuTexto = submenu.getText().trim();
-                    if (submenuTexto.equalsIgnoreCase(acessar)) { // fazer com que ignore os acentos e caixa alta/baixa
+                    if (submenuTexto.equalsIgnoreCase(acessar)) { 
                         wait.until(ExpectedConditions.elementToBeClickable(submenu)).click();
                         if (acessar.equalsIgnoreCase("Emitir Atestado de Matrícula")) {
                             driver.findElement(botaoAtestadoMatricula).click();
@@ -96,7 +97,7 @@ public class metodos extends Elementos {
 
     public void suspensaoDoPrograma(String cpf, String senha, String dataDeNascimento) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        List<WebElement> subsubMenus = driver.findElements(classeSubSubMenuSuspensao);
+        List<WebElement> subsubMenus = driver.findElements(classeSubSubMenuSuspenso);
         for (WebElement subsubMenu : subsubMenus) {
             String subsubmenuText = subsubMenu.getText().trim();
             if (subsubmenuText.equalsIgnoreCase("Suspensão Regular")) {
@@ -130,10 +131,10 @@ public class metodos extends Elementos {
         }
     }
 
-    public void trancamentoDeMatriculaCCR(String cpf, String senha, String dataDeNascimento) {
+    public void trancamentoDeMatriculaCCR(String cpf, String senha, String dataDeNascimento, String opcao) {
 
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        List<WebElement> subsubMenus = driver.findElements(classeSubSubMenuSuspensao);
+        List<WebElement> subsubMenus = driver.findElements(classeSubSubMenuSuspenso);
         for (WebElement subsubMenu : subsubMenus) {
             String subsubmenuText = subsubMenu.getText().trim();
             if (subsubmenuText.equalsIgnoreCase("Trancar")) {
@@ -181,6 +182,49 @@ public class metodos extends Elementos {
                 voltarAoMenuPrincipal();
             }
         }
+    }
+
+    public void visualizarOpcaoSubSubMenu(String opcao) {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        List<WebElement> subsubMenus = driver.findElements(classeSubSubMenuSuspenso);
+        for (WebElement subsubMenu : subsubMenus) {
+            String subsubmenuText = subsubMenu.getText().trim();
+            if (subsubmenuText.equalsIgnoreCase(opcao)) {
+                wait.until(ExpectedConditions.elementToBeClickable(subsubMenu)).click();
+                break;
+            }
+        }
+    }
+
+    public void consultasGerais(String opcao) {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        visualizarOpcaoSubSubMenu(opcao);
+        if (opcao.equalsIgnoreCase("Consultar Estrutura Curricular") || opcao.equalsIgnoreCase("Consultar Unidades Acadêmicas")) {
+
+            WebElement elementoSelect = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("select[name='busca:curso']")));
+            new Select(elementoSelect).selectByIndex(2);
+
+        } else if (opcao.equalsIgnoreCase("Consultar Turma")) {
+
+            WebElement elementoSelect = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("form:selectUnidade")));
+            new Select(elementoSelect).selectByIndex(2);
+        }
+        driver.findElement(botaoBuscar).click();
+
+    }
+
+    public void projetoDePesquisa(String opcao) {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        visualizarOpcaoSubSubMenu(opcao);
+        if (opcao.equalsIgnoreCase("Consultar projetos")) {
+            wait.until(ExpectedConditions.elementToBeClickable(botaoBuscar)).click();
+        }
+    }
+
+    public void ensino(String opcao) {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        visualizarOpcaoSubSubMenu(opcao);
+        
     }
 }
 
