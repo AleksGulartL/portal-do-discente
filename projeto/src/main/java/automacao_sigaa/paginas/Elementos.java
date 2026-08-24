@@ -2,6 +2,7 @@ package automacao_sigaa.paginas;
 
 import org.openqa.selenium.By;
 
+
 public class Elementos extends Navegador {
     protected By campoUsuario = By.name("user.login");
     protected By campoSenha = By.name("user.senha");
@@ -27,6 +28,5 @@ public class Elementos extends Navegador {
     protected By primeiroCCRListagem = By.cssSelector("input[type='checkbox']");
     protected By primeiroMotivo = By.cssSelector("input[type='radio']");
     protected By botaoSolicitarTrancamento = By.cssSelector("input[type='submit']");
-    protected By botaoBuscar = By.cssSelector("input[type='submit'][value='Buscar']");
 } 
  
