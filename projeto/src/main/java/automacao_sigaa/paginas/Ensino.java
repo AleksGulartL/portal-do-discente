@@ -97,7 +97,7 @@ public class Ensino extends metodos {
         }
     }
 
-    public void trancamentoDeMatriculaCCR(String cpf, String senha, String dataDeNascimento, String opcao) {
+    public void trancamentoDeMatriculaCCR(String cpf, String senha, String dataDeNascimento, String acessar) {
 
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         List<WebElement> subsubMenus = driver.findElements(classeSubSubMenuSuspenso);
@@ -149,21 +149,20 @@ public class Ensino extends metodos {
             }
         }
     }
-    public void consultasGerais(String opcao) {
+    public void consultasGerais(String acessar) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        visualizarOpcaoSubSubMenu(opcao);
-        if (opcao.equalsIgnoreCase("Consultar Estrutura Curricular") || opcao.equalsIgnoreCase("Consultar Unidades Acadêmicas")) {
+        visualizarOpcaoSubSubMenu(acessar);
+        if (acessar.equalsIgnoreCase("Consultar Estrutura Curricular") || acessar.equalsIgnoreCase("Consultar Unidades Acadêmicas")) {
 
             WebElement elementoSelect = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("select[name='busca:curso']")));
             new Select(elementoSelect).selectByIndex(2);
 
-        } else if (opcao.equalsIgnoreCase("Consultar Turma")) {
+        } else if (acessar.equalsIgnoreCase("Consultar Turma")) {
 
             WebElement elementoSelect = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("form:selectUnidade")));
             new Select(elementoSelect).selectByIndex(2);
         }
-        driver.findElement(By.cssSelector("input[type='submit'][value='Buscar']")).click();
- 
+        clicarBuscar();
     }
-    
+     
 }

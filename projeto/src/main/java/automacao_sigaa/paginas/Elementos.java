@@ -28,5 +28,6 @@ public class Elementos extends Navegador {
     protected By primeiroCCRListagem = By.cssSelector("input[type='checkbox']");
     protected By primeiroMotivo = By.cssSelector("input[type='radio']");
     protected By botaoSolicitarTrancamento = By.cssSelector("input[type='submit']");
+    protected By botaoBuscarGenerico = By.cssSelector("input[value='Buscar']");
 } 
  
