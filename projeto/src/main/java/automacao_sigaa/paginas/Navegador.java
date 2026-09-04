@@ -31,7 +31,7 @@ public class Navegador {
     public static void fecharNavegador() {
         try {
             if (driver != null) {
-                Thread.sleep(30000);
+                Thread.sleep(5000);
                 driver.quit(); 
             }
         } catch (InterruptedException e) {

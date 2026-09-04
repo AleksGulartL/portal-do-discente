@@ -44,46 +44,72 @@ public class metodos extends Elementos {
             return;
 
         switch (acessar.trim().toLowerCase()) {
-            case "emitir atestado de matrícula":
+            case "emitir atestado de matrícula": // ensino
                 wait.until(ExpectedConditions.elementToBeClickable(botaoAtestadoMatricula)).click();
                 break;
 
-            case "consultar ações":
+            case "consultar ações": // extensao
                 clicarBuscar();
                 break;
 
-            case "inscrição on-line em ações de extensão":
+            case "inscrição on-line em ações de extensão": // extensao
                 logarSigaa("aleksander.lopes", "Aleks15872704");
                 break;
 
-            case "consultar projetos":
-                WebElement elementoSelect = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("select[name='formBusca:j_id_jsp_1232863066_761']")));
+            case "consultar projetos": // extensao
+                WebElement elementoSelect = wait.until(ExpectedConditions.visibilityOfElementLocated(
+                        By.cssSelector("select[name='formBusca:j_id_jsp_1232863066_761']")));
                 new Select(elementoSelect).selectByIndex(1);
                 clicarBuscar();
+                voltarAoMenuPrincipal();
                 break;
-            
-            case "inscrever-se em seleção de monitoria":
-                WebElement elementoSelect2 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("select[name='busca:tipo'")));
+
+            case "inscrever-se em seleção de monitoria": // monitoria
+                WebElement elementoSelect2 = wait.until(
+                        ExpectedConditions.visibilityOfElementLocated(By.cssSelector("select[name='busca:tipo'")));
                 new Select(elementoSelect2).selectByIndex(1);
                 clicarBuscar();
                 break;
-            
-            case "plano de trabalho":
+
+            case "plano de trabalho": // pesquisa
                 visualizarOpcaoSubSubMenu("meus planos de trabalho");
                 break;
 
-            case "consultar ações associadas":
-                WebElement elementoSelect3 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("select[name='formBusca:j_id_jsp_1232863066_761']")));
+            case "consultar ações associadas": // açoes associadas 
+                WebElement elementoSelect3 = wait.until(ExpectedConditions.visibilityOfElementLocated(
+                        By.cssSelector("select[name='form:buscaUnidade']")));
                 new Select(elementoSelect3).selectByIndex(1);
                 clicarBuscar();
                 break;
-        
+
+            case "pesquisar material no acervo": // biblioteca
+                WebElement elementoSelect4 = wait.until(ExpectedConditions.visibilityOfElementLocated(
+                        By.cssSelector("select[name='formBuscaInternaMultiCampo:j_id_jsp_548632613_54']")));
+                new Select(elementoSelect4).selectByIndex(1);
+                driver.findElement(By.cssSelector("input[value='Pesquisar']")).click();
+                break;
+
+            case "pesquisar artigo no acervo": // biblioteca
+                WebElement campoTituloArtigo = wait.until(ExpectedConditions.visibilityOfElementLocated(
+                        By.cssSelector("input[name='formBuscaInternaArtigos:inputTextTituloArtigo']")));
+                campoTituloArtigo.sendKeys("");
+                driver.findElement(By.cssSelector("input[value='Pesquisar']")).click();
+                break;
+
+            case "oportunidades de bolsa": // bolsas
+                WebElement elementoSelect5 = wait.until(ExpectedConditions.visibilityOfElementLocated(
+                        By.cssSelector("select[name='busca:tipo']")));
+                new Select(elementoSelect5).selectByIndex(1);
+                clicarBuscar();
+                break;
+
             default:
                 break;
         }
     }
 
     public void voltarAoMenuPrincipal() {
+        driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(2));
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.elementToBeClickable(voltarParaMenuPrincipal)).click();
     }
@@ -103,5 +129,31 @@ public class metodos extends Elementos {
     public void clicarBuscar() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.elementToBeClickable(botaoBuscarGenerico)).click();
+    }
+
+    public void camposObrigatorios(String cpf, String dataDeNascimento, String senha) {
+        List<WebElement> elementosObrigatorios = driver.findElements(classeObrigatorio);
+        boolean necessitaCPF = false;
+        boolean necessitaDataNascimento = false;
+
+        for (WebElement elementoObrigatorio : elementosObrigatorios) {
+            String textoElementoObrigatorio = elementoObrigatorio.getText().trim();
+            if (textoElementoObrigatorio.contains("CPF")) {
+                necessitaCPF = true;
+            } else if (textoElementoObrigatorio.contains("Data de Nascimento")) {
+                necessitaDataNascimento = true;
+            }
+        }
+
+        if (necessitaCPF && !cpf.isEmpty()) {
+            driver.findElement(cpfMatricula).sendKeys(cpf);
+        }
+
+        if (necessitaDataNascimento && !dataDeNascimento.isEmpty()) {
+            driver.findElement(dataNascimentoMatricula).sendKeys(dataDeNascimento);
+        }
+
+        driver.findElement(senhaMatricula).sendKeys(senha);
+        driver.findElement(botaoConfirmarMatricula).click();
     }
 }

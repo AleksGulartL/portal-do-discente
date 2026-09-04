@@ -7,6 +7,9 @@ public class PortalDiscente {
     public Pesquisa pesquisa;
     public Extensao extensao;
     public Monitoria monitoria;
+    public Biblioteca biblioteca;
+    public Bolsas bolsas;
+    public Estagio estagio;
 
     public PortalDiscente() {
         this.login = new metodos();
@@ -14,5 +17,8 @@ public class PortalDiscente {
         this.pesquisa = new Pesquisa();
         this.extensao = new Extensao();
         this.monitoria = new Monitoria();
+        this.biblioteca = new Biblioteca();
+        this.estagio = new Estagio();
+
     }
 }

@@ -6,6 +6,7 @@ import automacao_sigaa.paginas.metodos;
 import automacao_sigaa.paginas.Navegador;
 import automacao_sigaa.paginas.PortalDiscente;
 
+
 public class LoginTest {
 
     private PortalDiscente portal;
@@ -24,7 +25,7 @@ public class LoginTest {
     @Test
     public void testLoginSigaa() {
         portal.login.logarSigaa(usuario, senha);
-        portal.login.navegarMenuDiscente("monitoria", "meus certificados");
+        portal.login.navegarMenuDiscente("bolsas", "oportunidades de bolsa");
         
         // portal.ensino.trancamentoDeMatriculaCCR(cpf, senha, dataNascimento,
         // "trancar");
@@ -34,7 +35,15 @@ public class LoginTest {
         // portal.pesquisa.projetoDePesquisa("consultar projetos");
         // portal.extensao.navegarExtensao("consultar ações");
         // portal.pesquisa.projetosQueParticipo();
-        portal.monitoria.meusCertificados();
+        // portal.monitoria.meusCertificados();
+        // portal.biblioteca.pesquisarArtigo();
+        // portal.biblioteca.pesquisarMaterial();
+        // portal.biblioteca.emprestimos();
+        // portal.biblioteca.cadastrarInteresseAcervo();
+        // portal.estagio.navegarNoMenu();
+        // portal.bolsas.cadastroUnico();
+        // portal.bolsas.declaracaoBolsista(cpf, senha, dataNascimento);
+
     }
 
     @After

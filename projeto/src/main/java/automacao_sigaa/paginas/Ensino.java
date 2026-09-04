@@ -27,29 +27,7 @@ public class Ensino extends metodos {
                         lugaresDisponiveis.selectByVisibleText(option.getText());
                         driver.findElement(botaoBuscarMatricula).click();
                         wait.until(ExpectedConditions.elementToBeClickable(primeiraTurmaListagem)).click();
-                        List<WebElement> elementosObrigatorios = driver.findElements(classeObrigatorio);
-                        boolean necessitaCPF = false;
-                        boolean necessitaDataNascimento = false;
-
-                        for (WebElement elementoObrigatorio : elementosObrigatorios) {
-                            String textoElementoObrigatorio = elementoObrigatorio.getText().trim();
-                            if (textoElementoObrigatorio.contains("CPF")) {
-                                necessitaCPF = true;
-                            } else if (textoElementoObrigatorio.contains("Data de Nascimento")) {
-                                necessitaDataNascimento = true;
-                            }
-                        }
-
-                        if (necessitaCPF && !cpf.isEmpty()) {
-                            driver.findElement(cpfMatricula).sendKeys(cpf);
-                        }
-
-                        if (necessitaDataNascimento && !dataDeNascimento.isEmpty()) {
-                            driver.findElement(dataNascimentoMatricula).sendKeys(dataDeNascimento);
-                        }
-
-                        driver.findElement(senhaMatricula).sendKeys(senha);
-                        driver.findElement(botaoConfirmarMatricula).click();
+                        camposObrigatorios(cpf, dataDeNascimento, senha);
                         wait.until(ExpectedConditions.alertIsPresent()).accept();
                         voltarAoMenuPrincipal();
                         break;
