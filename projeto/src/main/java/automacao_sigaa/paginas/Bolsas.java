@@ -1,12 +1,8 @@
 package automacao_sigaa.paginas;
 
-import java.time.Duration;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class Bolsas extends metodos {
     public void cadastroUnico() {
@@ -19,6 +15,7 @@ public class Bolsas extends metodos {
         navegarMenuDiscente("bolsas", "cadastro único");
         visualizarOpcaoSubSubMenu("declaração de discente prioritário");
         voltarAoMenuPrincipal();
+        
     }
 
     public void declaracaoBolsista(String cpf, String senha, String dataDeNascimento) {

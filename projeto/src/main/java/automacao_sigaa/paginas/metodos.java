@@ -52,7 +52,7 @@ public class metodos extends Elementos {
                 clicarBuscar();
                 break;
 
-            case "inscrição on-line em ações de extensão": // extensao
+            case "inscrição on-line em ações de extensão": // extens
                 logarSigaa("aleksander.lopes", "Aleks15872704");
                 break;
 

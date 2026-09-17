@@ -5,8 +5,8 @@ public class Pesquisa extends metodos {
         clicarBuscar();
     }
     public void projetosQueParticipo(){
-        visualizarOpcaoSubSubMenu("projetos que participo");
+        visualizarOpcaoSubSubMenu("projetos que participo"); 
     }
 }
 // nao é possivel acessar:
-// Relatorios de iniciaçao cientifica / certificados e declaraçoes / congresso de iniciaçao cientifica / 
+// Relatorios de iniciaçao cientifica / certificados e declaraçoes / congresso de iniciaçao cientica / 

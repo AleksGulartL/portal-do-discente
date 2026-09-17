@@ -10,10 +10,10 @@ import automacao_sigaa.paginas.PortalDiscente;
 public class LoginTest {
 
     private PortalDiscente portal;
-    private String usuario = "aleksander.lopes";
-    private String senha = "Aleks15872704";
-    private String cpf = "03854413041";
-    private String dataNascimento = "03112005";
+    private String usuario = "";
+    private String senha = "";
+    private String cpf = "";
+    private String dataNascimento = "";
 
 
     @Before
