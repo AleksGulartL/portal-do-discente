@@ -10,25 +10,25 @@ import automacao_sigaa.paginas.PortalDiscente;
 public class LoginTest {
 
     private PortalDiscente portal;
-    private String usuario = "";
-    private String senha = "";
-    private String cpf = "";
-    private String dataNascimento = "";
+    private String usuario = "aleksander.lopes";
+    private String senha = "Mudar123"; 
+    private String cpf = "03854413041";
+    private String dataNascimento = "03112005";
 
 
     @Before
     public void iniciar() {
-        Navegador.abrirNavegador("https://sigaa-hom.uffs.edu.br");
+        Navegador.abrirNavegador("https://sigaatre-tst.uffs.edu.br/sigaa");
         portal = new PortalDiscente();
     }
 
     @Test
     public void testLoginSigaa() {
-        portal.login.logarSigaa(usuario, senha);
-        portal.login.navegarMenuDiscente("bolsas", "oportunidades de bolsa");
+        portal.login.logarSigaaTreinamentos(usuario, senha);
+        // portal.login.logarSigaa();
+        // portal.login.navegarMenuDiscente("outros", "validar e-mail"); 
         
-        // portal.ensino.trancamentoDeMatriculaCCR(cpf, senha, dataNascimento,
-        // "trancar");
+        // portal.ensino.trancamentoDeMatriculaCCR(cpf, senha, dataNascimento,"trancar");
         // portal.ensino.matriculaExtraordinaria("Chapecó", cpf, "123", dataNascimento);
         // portal.ensino.suspensaoDoPrograma(cpf, "", dataNascimento);
         // portal.ensino.consultasGerais("Consultar Turma");
@@ -43,9 +43,27 @@ public class LoginTest {
         // portal.estagio.navegarNoMenu();
         // portal.bolsas.cadastroUnico();
         // portal.bolsas.declaracaoBolsista(cpf, senha, dataNascimento);
+        // portal.relacoes_internacionais.realizar_inscricao();
+        // portal.outros.ambientesVirtuais();
+        // portal.outros.notificarAusenciaProfessor();
+        // portal.outros.validarEmail();
+        // portal.outros.navegarOutros();
+        // portal.outros.forumDeCursos();
+        // portal.outros.paginaDoCurso();
+        // portal.outros.entrarEmContato();
+        // portal.outros.consultarDefesas();
+        // portal.outros.acervoDosDocentes();
+        // portal.outros.auxilioFinanceiroAssinaturaDocumentosSIPAC();
+        // portal.outros.psicologia();
+        // portal.outros.atendimentoMedicoOdontologico();
+        //portal.outros.RelatoriodeCargaHorariaDocente();
+        // portal.outros.criarSenhaDeAcesso(); 
+        // portal.outros.navegarOutros();
+        portal.biblioteca.compraDeLivros();
+        
 
     }
-
+ 
     @After
     public void finalizar() {
         Navegador.fecharNavegador();

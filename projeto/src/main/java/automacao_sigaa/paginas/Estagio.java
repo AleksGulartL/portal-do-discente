@@ -3,8 +3,9 @@ package automacao_sigaa.paginas;
 import java.time.Duration;
 
 public class Estagio extends metodos {
-    public void navegarNoMenu() {
+    public void navegarEstagio() {
         driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(3));
+        navegarMenuDiscente("estágio", "mural de vagas");
         voltarAoMenuPrincipal();
         navegarMenuDiscente("estágio", "gerenciar estágios");
         driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(3));
@@ -16,4 +17,5 @@ public class Estagio extends metodos {
         voltarAoMenuPrincipal();
 
     }
+
 }

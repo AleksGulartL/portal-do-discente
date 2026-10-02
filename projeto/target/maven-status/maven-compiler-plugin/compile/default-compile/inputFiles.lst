@@ -1,9 +1,14 @@
 /home/aleksander/portal-do-discente/projeto/src/main/java/automacao_sigaa/Main.java
+/home/aleksander/portal-do-discente/projeto/src/main/java/automacao_sigaa/paginas/Biblioteca.java
+/home/aleksander/portal-do-discente/projeto/src/main/java/automacao_sigaa/paginas/Bolsas.java
 /home/aleksander/portal-do-discente/projeto/src/main/java/automacao_sigaa/paginas/Elementos.java
 /home/aleksander/portal-do-discente/projeto/src/main/java/automacao_sigaa/paginas/Ensino.java
+/home/aleksander/portal-do-discente/projeto/src/main/java/automacao_sigaa/paginas/Estagio.java
 /home/aleksander/portal-do-discente/projeto/src/main/java/automacao_sigaa/paginas/Extensao.java
 /home/aleksander/portal-do-discente/projeto/src/main/java/automacao_sigaa/paginas/Monitoria.java
 /home/aleksander/portal-do-discente/projeto/src/main/java/automacao_sigaa/paginas/Navegador.java
+/home/aleksander/portal-do-discente/projeto/src/main/java/automacao_sigaa/paginas/Outros.java
 /home/aleksander/portal-do-discente/projeto/src/main/java/automacao_sigaa/paginas/Pesquisa.java
 /home/aleksander/portal-do-discente/projeto/src/main/java/automacao_sigaa/paginas/PortalDiscente.java
+/home/aleksander/portal-do-discente/projeto/src/main/java/automacao_sigaa/paginas/Relaçoes_internacionais.java
 /home/aleksander/portal-do-discente/projeto/src/main/java/automacao_sigaa/paginas/metodos.java

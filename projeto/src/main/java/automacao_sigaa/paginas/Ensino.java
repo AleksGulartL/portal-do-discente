@@ -141,6 +141,26 @@ public class Ensino extends metodos {
             new Select(elementoSelect).selectByIndex(2);
         }
         clicarBuscar();
+        voltarAoMenuPrincipal();
     }
+
+    public void emitirAtestadoDeMatricula() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        navegarMenuDiscente("ensino", "emitir atestado de matrícula");
+        wait.until(ExpectedConditions.elementToBeClickable(botaoAtestadoMatricula)).click();
+        voltarAoMenuPrincipal();
+    }
+
+    public void navegarEnsino() {
+        matriculaExtraordinaria(campus, cpf, senha, dataDeNascimento);
+        suspensaoDoPrograma(cpf, senha, dataDeNascimento);
+        trancamentoDeMatriculaCCR(cpf, senha, dataDeNascimento, "trancar");
+        consultasGerais("Consultar Estrutura Curricular");
+        consultasGerais("Consultar Unidades Acadêmicas");
+        consultasGerais("Consultar Turma");
+        emitirAtestadoDeMatricula();
+    }
+
+    
      
 }

@@ -1,8 +1,12 @@
 package automacao_sigaa.paginas;
 
+import java.time.Duration;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class Bolsas extends metodos {
     public void cadastroUnico() {
@@ -27,16 +31,18 @@ public class Bolsas extends metodos {
     }
 
     public void oportunidadesDeBolsa() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         navegarMenuDiscente("bolsas", "oportunidades de bolsa");
-        WebElement elementoSelect = driver.findElement(By.cssSelector("select[name='busca:tipo']"));
+        WebElement elementoSelect = wait.until(ExpectedConditions.visibilityOfElementLocated(
+                By.cssSelector("select[name='busca:tipo']")));
         new Select(elementoSelect).selectByIndex(1);
         clicarBuscar();
         voltarAoMenuPrincipal();
     }
 
-
-    
-
-
-
+    public void navegarBolsas() {
+        cadastroUnico();
+        declaracaoBolsista(cpf, senha, dataDeNascimento);
+        oportunidadesDeBolsa();
+    }
 }
