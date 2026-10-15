@@ -2,7 +2,6 @@ package automacao_sigaa.paginas;
 
 import org.openqa.selenium.By;
 
-
 public class Elementos extends Navegador {
     protected By campoUsuario = By.name("user.login");
     protected By campoSenha = By.name("user.senha");
@@ -29,5 +28,8 @@ public class Elementos extends Navegador {
     protected By primeiroMotivo = By.cssSelector("input[type='radio']");
     protected By botaoSolicitarTrancamento = By.cssSelector("input[type='submit']");
     protected By botaoBuscarGenerico = By.cssSelector("input[value='Buscar']");
-} 
- 
+    protected By botaoCienteCookie = By.cssSelector("#sigaa-cookie-consent button");
+    protected By inputComprovanteEnsinoMedio = By.xpath("(//input[@type='file'])[1]");
+    protected By inputDocumentoIdentificacao = By.xpath("(//input[@type='file'])[2]");
+    protected By botaoSubmeterValidacaoDiploma = By.cssSelector("input[value='Submeter']");
+}

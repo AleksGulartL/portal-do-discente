@@ -1,6 +1,7 @@
 package automacao_sigaa.paginas;
 
 import java.time.Duration;
+import java.io.File;
 import java.util.List;
 
 import org.openqa.selenium.By;
@@ -10,6 +11,69 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class Ensino extends metodos {
+
+    public void consultarNotas() {
+        navegarMenuDiscente("ensino", "Consultar Minhas Notas");
+        voltarAoMenuPrincipal();
+    }
+
+    public void consultarIndiceAcademico() {
+        navegarMenuDiscente("ensino", "Consultar Índices Acadêmicos");
+        voltarAoMenuPrincipal();
+    }
+
+    public void emitirAtestadoDeMatricula() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        navegarMenuDiscente("ensino", "emitir atestado de matrícula");
+        wait.until(ExpectedConditions.elementToBeClickable(botaoAtestadoMatricula)).click();
+        voltarAoMenuPrincipal();
+    }
+
+    public void emitirAtestadoDeMatriculaPeriodoSuplementar() {
+        navegarMenuDiscente("ensino", " Emitir Atestadode Matrícula para Período Suplementar");
+        voltarAoMenuPrincipal();
+    }
+
+    public void emitirHistoricoEdeclaracao() {
+        navegarMenuDiscente("ensino", "emitir histórico");
+        navegarMenuDiscente("ensino", "Emitir Declaração de Vínculo");
+    }
+
+    public void impressaoDiplomaDigital() {
+        navegarMenuDiscente("ensino", "Impressão de Diploma Digital");
+        voltarAoMenuPrincipal();
+    }
+
+    public void alunosAptosAColarGrau() {
+        navegarMenuDiscente("ensino", "Alunos Aptos a Colar Grau");
+    }
+
+    public void solicitarValidacaoDeDocumentosRegistroDeDiploma(String caminhoPdfEnsinoMedio,
+            String caminhoPdfIdentificacao) {
+        navegarMenuDiscente("ensino", "Solicitar Validação de Documentos para Registro de Diploma");
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+
+        File fileEnsinoMedio = new File(caminhoPdfEnsinoMedio);
+        File fileIdentificacao = new File(caminhoPdfIdentificacao);
+
+        if (!fileEnsinoMedio.exists()) {
+            throw new IllegalArgumentException("Arquivo não encontrado: " + fileEnsinoMedio.getAbsolutePath());
+        }
+        if (!fileIdentificacao.exists()) {
+            throw new IllegalArgumentException("Arquivo não encontrado: " + fileIdentificacao.getAbsolutePath());
+        }
+
+        WebElement campoEnsinoMedio = wait
+                .until(ExpectedConditions.presenceOfElementLocated(inputComprovanteEnsinoMedio));
+        campoEnsinoMedio.sendKeys(fileEnsinoMedio.getAbsolutePath());
+
+        WebElement campoIdentificacao = wait
+                .until(ExpectedConditions.presenceOfElementLocated(inputDocumentoIdentificacao));
+        campoIdentificacao.sendKeys(fileIdentificacao.getAbsolutePath());
+
+        // wait.until(ExpectedConditions.elementToBeClickable(botaoSubmeterValidacaoDiploma)).click();
+
+    }
 
     public void matriculaExtraordinaria(String campus, String cpf, String senha, String dataDeNascimento) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
@@ -61,7 +125,7 @@ public class Ensino extends metodos {
                     }
                 }
 
-                if (necessitaCPF && cpf != null && !cpf.isBlank()) { 
+                if (necessitaCPF && cpf != null && !cpf.isBlank()) {
                     driver.findElement(cpfMatricula).sendKeys(cpf);
                 }
 
@@ -127,27 +191,30 @@ public class Ensino extends metodos {
             }
         }
     }
+
     public void consultasGerais(String acessar) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        visualizarOpcaoSubSubMenu(acessar);
-        if (acessar.equalsIgnoreCase("Consultar Estrutura Curricular") || acessar.equalsIgnoreCase("Consultar Unidades Acadêmicas")) {
+        if (acessar.equalsIgnoreCase("Consultar Estrutura Curricular")) {
+            navegarMenuDiscente("ensino", "consultas gerais");
+            visualizarOpcaoSubSubMenu(acessar);
+            WebElement elementoSelect = wait
+                    .until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("select[name='busca:curso']")));
+            new Select(elementoSelect).selectByIndex(2);
 
-            WebElement elementoSelect = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("select[name='busca:curso']")));
+        } else if (acessar.equalsIgnoreCase("Consultar Unidades Acadêmicas")) {
+            navegarMenuDiscente("ensino", "consultas gerais");
+            visualizarOpcaoSubSubMenu(acessar);
+            WebElement elementoSelect = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("tipo")));
             new Select(elementoSelect).selectByIndex(2);
 
         } else if (acessar.equalsIgnoreCase("Consultar Turma")) {
-
-            WebElement elementoSelect = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("form:selectUnidade")));
+            navegarMenuDiscente("ensino", "consultas gerais");
+            visualizarOpcaoSubSubMenu(acessar);
+            WebElement elementoSelect = wait
+                    .until(ExpectedConditions.visibilityOfElementLocated(By.id("form:selectUnidade")));
             new Select(elementoSelect).selectByIndex(2);
         }
         clicarBuscar();
-        voltarAoMenuPrincipal();
-    }
-
-    public void emitirAtestadoDeMatricula() {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        navegarMenuDiscente("ensino", "emitir atestado de matrícula");
-        wait.until(ExpectedConditions.elementToBeClickable(botaoAtestadoMatricula)).click();
         voltarAoMenuPrincipal();
     }
 
@@ -161,6 +228,4 @@ public class Ensino extends metodos {
         emitirAtestadoDeMatricula();
     }
 
-    
-     
 }

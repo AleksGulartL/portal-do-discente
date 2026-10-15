@@ -59,7 +59,8 @@ public class LoginTest {
         //portal.outros.RelatoriodeCargaHorariaDocente();
         // portal.outros.criarSenhaDeAcesso(); 
         // portal.outros.navegarOutros();
-        portal.biblioteca.compraDeLivros();
+        // portal.biblioteca.compraDeLivros();
+        portal.ensino.solicitarValidacaoDeDocumentosRegistroDeDiploma("src/test/resources/docs/ensino_medio.pdf", "src/test/resources/docs/identidade.pdf");
         
 
     }

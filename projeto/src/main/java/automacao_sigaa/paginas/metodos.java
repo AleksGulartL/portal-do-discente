@@ -7,6 +7,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.NoSuchElementException;
 
 public class metodos extends Elementos {
 
@@ -17,7 +19,29 @@ public class metodos extends Elementos {
     String dataDeNascimento = "03112005";
     String campus = "Chapecó";
 
+    public void aceitarCookiesSeVisivel() {
+        try {
+            driver.manage().timeouts().implicitlyWait(Duration.ofMillis(500));
+            List<WebElement> botoes = driver.findElements(botaoCienteCookie);
+            for (WebElement botao : botoes) {
+                if (botao.isDisplayed()) {
+                    botao.click();
+                    break;
+                }
+            }
+        } catch (Exception e) {
+            
+        } finally {
+            driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        }
+    }
+
+    public void fecharAvisoDeCookies() {
+        aceitarCookiesSeVisivel();
+    }
+
     public void logarSigaa() {
+        aceitarCookiesSeVisivel();
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.visibilityOfElementLocated(campoUsuario)).sendKeys(usuario);
         wait.until(ExpectedConditions.visibilityOfElementLocated(campoSenha)).sendKeys(senha);
@@ -27,6 +51,7 @@ public class metodos extends Elementos {
 
     // so é preciso no sigaa treinamentos
     public void logarSigaaTreinamentos(String usuario, String senha) {
+        aceitarCookiesSeVisivel();
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.visibilityOfElementLocated(campoUsuario)).sendKeys(usuario);
         wait.until(ExpectedConditions.visibilityOfElementLocated(campoSenha)).sendKeys(senha);
@@ -116,4 +141,5 @@ public class metodos extends Elementos {
         driver.findElement(senhaMatricula).sendKeys(senha);
         driver.findElement(botaoConfirmarMatricula).click();
     }
+
 }
