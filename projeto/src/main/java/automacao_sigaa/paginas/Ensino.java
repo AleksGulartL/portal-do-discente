@@ -46,6 +46,7 @@ public class Ensino extends metodos {
 
     public void alunosAptosAColarGrau() {
         navegarMenuDiscente("ensino", "Alunos Aptos a Colar Grau");
+        //////////
     }
 
     public void solicitarValidacaoDeDocumentosRegistroDeDiploma(String caminhoPdfEnsinoMedio,
@@ -67,13 +68,52 @@ public class Ensino extends metodos {
                 .until(ExpectedConditions.presenceOfElementLocated(inputComprovanteEnsinoMedio));
         campoEnsinoMedio.sendKeys(fileEnsinoMedio.getAbsolutePath());
 
+        wait.until(ExpectedConditions.presenceOfElementLocated(
+                By.xpath("//tr[th[contains(., 'Ensino Médio')]]//a[contains(text(), '" + fileEnsinoMedio.getName() + "')]")));
+
         WebElement campoIdentificacao = wait
                 .until(ExpectedConditions.presenceOfElementLocated(inputDocumentoIdentificacao));
         campoIdentificacao.sendKeys(fileIdentificacao.getAbsolutePath());
+        wait.until(ExpectedConditions.presenceOfElementLocated(
+                By.xpath("//tr[th[contains(., 'Identificação')]]//a[contains(text(), '" + fileIdentificacao.getName() + "')]")));
 
-        // wait.until(ExpectedConditions.elementToBeClickable(botaoSubmeterValidacaoDiploma)).click();
+        wait.until(ExpectedConditions.elementToBeClickable(botaoSubmeterValidacaoDiploma)).click();
 
     }
+
+    public void SolicitarAproveitamentoIncorporacaoEstudos() {
+        navegarMenuDiscente("ensino", "Solicitar Aproveitamento/Incorporação de Estudos");
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("a[id$=':opcaoAproveitamentoAutomatico']"))).click();
+        wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("a[id$=':opcaoAproveitamentoManualInterno']"))).click();
+        wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("a[id$=':opcaoAproveitamentoManualExterno']"))).click();
+        wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("input[value='<< Voltar']"))).click();
+        wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("a[id$=':opcaoIncorporacaoEstudos']"))).click();
+        wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("input[value='<< Voltar']"))).click();
+        voltarAoMenuPrincipal();
+    }
+
+    public void minhasSolicitacoesDeAproveitamento() {
+        navegarMenuDiscente("ensino", "Minhas Solicitações de Aproveitamento");
+        voltarAoMenuPrincipal();
+    }
+
+    public void AvaliaçaoInstitucional() {
+        navegarMenuDiscente("ensino", "Avaliação Institucional");
+        visualizarOpcaoSubSubMenu("Preencher a Avaliação Institucional");
+        voltarAoMenuPrincipal();
+        navegarMenuDiscente("ensino", "Avaliação Institucional");
+        visualizarOpcaoSubSubMenu("Rever a Avaliação Anterior");
+        voltarAoMenuPrincipal();
+        navegarMenuDiscente("ensino", "Avaliação Institucional");
+        visualizarOpcaoSubSubMenu("Consultar o Resultado da Avaliação");
+        voltarAoMenuPrincipal();
+        navegarMenuDiscente("ensino", "Avaliação Institucional");
+        visualizarOpcaoSubSubMenu("Observações dos Docentes Sobre Minhas Turmas");
+        voltarAoMenuPrincipal(); 
+    }
+
+    
 
     public void matriculaExtraordinaria(String campus, String cpf, String senha, String dataDeNascimento) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));

@@ -29,7 +29,11 @@ public class Elementos extends Navegador {
     protected By botaoSolicitarTrancamento = By.cssSelector("input[type='submit']");
     protected By botaoBuscarGenerico = By.cssSelector("input[value='Buscar']");
     protected By botaoCienteCookie = By.cssSelector("#sigaa-cookie-consent button");
-    protected By inputComprovanteEnsinoMedio = By.xpath("(//input[@type='file'])[1]");
-    protected By inputDocumentoIdentificacao = By.xpath("(//input[@type='file'])[2]");
+    protected By inputComprovanteEnsinoMedio = By.xpath("//tr[th[contains(., 'Ensino Médio')]]//input[@type='file']");
+    protected By inputDocumentoIdentificacao = By.xpath("//tr[th[contains(., 'Identificação')]]//input[@type='file']");
     protected By botaoSubmeterValidacaoDiploma = By.cssSelector("input[value='Submeter']");
+    protected By opcaoAproveitamentoAutomatico = By.cssSelector("a[id$=':opcaoAproveitamentoAutomatico']");
+    protected By opcaoAproveitamentoManualInterno = By.cssSelector("a[id$=':opcaoAproveitamentoManualInterno']");
+    protected By opcaoAproveitamentoManualExterno = By.cssSelector("a[id$=':opcaoAproveitamentoManualExterno']");
+    protected By opcaoIncorporacaoEstudos = By.cssSelector("a[id$=':opcaoIncorporacaoEstudos']");
 }
